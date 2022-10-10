@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Link.Models.LinksTable>
+
+    @{
+        ViewBag.Title = "ShowLinks";
+    }
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <link href=//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css rel="stylesheet" />
+        <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <h2>Show-Links</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    @{int index = 1;}
+                  <table class="table table-bordered" id="LinkDataTable">
+                      <thead>
+                          <tr>
+
+                              <th>
+                                  Sr.No
+                              </th>
+                              <th>
+                                  @Html.DisplayNameFor(model => model.Description)
+                              </th>
+                              <th>
+                                  @Html.DisplayNameFor(model => model.Links)
+                              </th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      @foreach (var item in Model)
+                      {
+                          <tbody>
+                              <tr>
+                                  <td>
+                                      @index
+                                  </td>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.Description)
+                                  </td>
+                                  <td>
+                                      <a href=" @Html.DisplayFor(modelItem => item.Links)">@Html.DisplayFor(modelItem => item.Links)</a>
+                                  </td>
+                                  <td>
+                                      @Html.ActionLink("Edit", "Edit", new { Description = item.Description }) |
+
+                                      @Html.ActionLink("Delete", "Delete", new { Description = item.Description })
+                                  </td>
+                              </tr>
+                          </tbody>
+                              index++;
+                              }
+                         
+                      </table>
+    <style>
+        th {
+            text-align: center;
+            background-color: #a2a8d3;
+        }
+
+        td {
+            text-align: left;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+
+            $('#LinkDataTable').DataTable({
+                select:true
+            });
+            console.log("hiiee");
+
+
+        });
+    </script>
